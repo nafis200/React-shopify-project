@@ -65,6 +65,9 @@ const Authprovider = ({children}) => {
           const response = await axiosPublic.post('/jwt', userInfo);
           await AsyncStorage.setItem('access-token', response.data.token);
           console.log('Token stored:', response.data.token);
+          if(response.data.token){
+             setLoading(false)
+          }
           const token = await AsyncStorage.getItem('access-token');
           console.log('Retrieved token:', token);
   
@@ -79,7 +82,7 @@ const Authprovider = ({children}) => {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [axiosPublic]);
 
   const authInfo = {
     user,

@@ -2,10 +2,13 @@
 
 import React from 'react';
 import Navigation from './src/navigation/Navigation';
+import Authprovider from './src/provider/Authprovider';
 
 const App = () => {
     return (
-        <Navigation/>
+        <Authprovider>
+            <Navigation/>
+        </Authprovider>
     );
 };
 
