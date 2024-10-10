@@ -3,11 +3,14 @@
 import React, { createContext, useState, useEffect} from 'react';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import useAxiospublic from './hooks/useAxiospublic';
 export const AuthContext = createContext()
 
 const Authprovider = ({children}) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const axiosPublic = useAxiospublic()
 
   GoogleSignin.configure({
     webClientId: '175986965000-j7iunrcvgliqr5fduufj47olbv3tp95a.apps.googleusercontent.com',
@@ -54,9 +57,25 @@ const Authprovider = ({children}) => {
   };
   
   useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged((user) => {
-      setUser(user);
-      setLoading(false);
+    const unsubscribe = auth().onAuthStateChanged(async(currentuser) => {
+      setUser(currentuser);
+      if (currentuser) {
+        const userInfo = { email: currentuser.email };
+        try {
+          const response = await axiosPublic.post('/jwt', userInfo);
+          await AsyncStorage.setItem('access-token', response.data.token);
+          console.log('Token stored:', response.data.token);
+          const token = await AsyncStorage.getItem('access-token');
+          console.log('Retrieved token:', token);
+  
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      } else {
+        await AsyncStorage.removeItem('access-token');
+        const token = await AsyncStorage.getItem('access-token');
+        console.log('Token after logout:', token);
+      }
     });
 
     return () => unsubscribe();
