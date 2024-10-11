@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Animated, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Animated, Image, TouchableOpacity,Alert } from "react-native";
 import React, { useContext, useState } from "react";
 import { GestureHandlerRootView, PanGestureHandler, State } from "react-native-gesture-handler";
 import CustomSafeAreaView from "../../components/CustomSafeAreaView.jsx/CustomSafeAreaView";
@@ -22,9 +22,21 @@ const CustomerLogin = () => {
   const handleLogin = async () => {
     try {
       await signInUser(Email, password);
-      console.log('User logged in successfully');
+      Alert.alert(
+        "Alert Title",
+        "Login successfully", 
+        [
+          { text: "OK", onPress: () => console.log("OK Pressed") } 
+        ]
+      );
     } catch (error) {
-      console.log('Login Error:', error);
+      Alert.alert(
+        "Alert Title",
+        "Email password dont match", 
+        [
+          { text: "OK", onPress: () => console.log("OK Pressed") } 
+        ]
+      );
     }
   };
 
@@ -101,13 +113,12 @@ const CustomerLogin = () => {
                   loading={loading}
                   onPress={() => handleLogin()}
                 />
-
-                <TouchableOpacity onPress={() => resetAndNavigate('Register') }>
-                    <View style={{flexDirection:'row'}}>
-                    <Text style={{color:'black',marginRight:10}}>Have not any Accout Please</Text>
-                    <Text style={styles.link}>Register</Text>
-                    </View>
+                <View style={{flexDirection:'row'}}>
+                <Text style={{ color: 'black', marginRight: 10 }}>Have not any Accout Please</Text>
+                <TouchableOpacity onPress={() => resetAndNavigate('Register')}>
+                  <Text style={styles.link}>Register</Text>
                 </TouchableOpacity>
+                </View>
 
               </View>
 
