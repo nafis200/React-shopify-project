@@ -1,13 +1,15 @@
-import { View, Text, StyleSheet, Animated, Image } from "react-native";
+import { View, Text, StyleSheet, Animated, Image, TouchableOpacity } from "react-native";
 import React, { useContext, useState } from "react";
 import { GestureHandlerRootView, PanGestureHandler, State } from "react-native-gesture-handler";
 import CustomSafeAreaView from "../../components/CustomSafeAreaView.jsx/CustomSafeAreaView";
 import ProductSlider from "../../components/login/ProductSlider";
-import { resetAndNavigate } from "../../utils/NavigationUtils";
+import { navigate, resetAndNavigate } from "../../utils/NavigationUtils";
 import CustomText from "../../components/ui/CustomText";
 import CustomInput from "../../components/ui/CustomInput";
 import CustomButton from "../../components/ui/CustomButton";
 import { AuthContext } from "../../provider/Authprovider";
+import { NavigationContainer } from '@react-navigation/native';
+
 
 const CustomerLogin = () => {
   const [Email, setEmail] = useState('')
@@ -15,7 +17,7 @@ const CustomerLogin = () => {
   const [loading, setLoading] = useState(false)
   const [gestureSequence, setGestureSequence] = useState([])
 
-  const {signInUser} = useContext(AuthContext)
+  const { signInUser } = useContext(AuthContext)
 
   const handleLogin = async () => {
     try {
@@ -97,8 +99,16 @@ const CustomerLogin = () => {
 
                 <CustomButton title='Login' disabled={password.length < 6}
                   loading={loading}
-                  onPress={()=>handleLogin()}
+                  onPress={() => handleLogin()}
                 />
+
+                <TouchableOpacity onPress={() => resetAndNavigate('Register') }>
+                    <View style={{flexDirection:'row'}}>
+                    <Text style={{color:'black',marginRight:10}}>Have not any Accout Please</Text>
+                    <Text style={styles.link}>Register</Text>
+                    </View>
+                </TouchableOpacity>
+
               </View>
 
             </Animated.ScrollView>
@@ -134,7 +144,11 @@ const styles = StyleSheet.create({
   phoneText: {
     marginLeft: 10,
     color: 'black'
-  }
+  },
+  link: {
+    color: 'blue', // Make it look like a link
+    textDecorationLine: 'underline',
+  },
 })
 
 export default CustomerLogin;
