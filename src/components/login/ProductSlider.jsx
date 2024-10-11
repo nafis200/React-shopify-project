@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
     itemContainer:{
       marginBottom:12,
       marginHorizontal:10,
-      width: screenWidth * 0.26,
-      height: screenHeight * 0.26,
+      width: screenWidth * 0.20,
+      height: screenHeight * 0.20,
       backgroundColor:'#e9f7f8',
       justifyContent:'center',
       borderRadius:25, 
@@ -79,9 +79,9 @@ const styles = StyleSheet.create({
          zIndex: -2
     },
     gridContainer:{
-       justifyContent:'center',
-       overflow:'visible',
-       alignItems:'center'
+      justifyContent:'center',
+      overflow:'visible',
+      alignItems:'center'
     },
     row:{
         flexDirection:"row",
