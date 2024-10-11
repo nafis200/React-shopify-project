@@ -9,14 +9,14 @@ import Icon from 'react-native-vector-icons/Ionicons'
 
 const CustomInput = ({ onClear, left, right = true, ...props }) => {
     return (
-        <View>
+        <View style={styles.flexRow}>
             {left}
             <TextInput
                 {...props} style={styles.inputContainer} placeholderTextColor='#ccc' />
             <View style={styles.icon}>
                 {props.value?.length != 0 && right &&
                     <TouchableOpacity onPress={onClear}>
-                        <Icon name="close-circle-sharp" size={RFValue(16)} color='#ccc' />
+                        <Icon name="close-circle-sharp" size={RFValue(24)} color='#ccc' />
                     </TouchableOpacity>
                 }
             </View>
@@ -45,12 +45,13 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         width: '70%',
-        fontFamily: Fonts.Semibold,
+        fontFamily: '',
         fontSize: RFValue(12),
         paddingVertical: 14,
         paddingBottom: 15,
         height: '100%',
-        bottom: -1
+        bottom: -1,
+        color:'black'
     },
     icon: {
         width: '%5',

@@ -1,16 +1,31 @@
-
-
 import { View, Text, StyleSheet, Animated, Image } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { GestureHandlerRootView, PanGestureHandler, State } from "react-native-gesture-handler";
 import CustomSafeAreaView from "../../components/CustomSafeAreaView.jsx/CustomSafeAreaView";
 import ProductSlider from "../../components/login/ProductSlider";
 import { resetAndNavigate } from "../../utils/NavigationUtils";
 import CustomText from "../../components/ui/CustomText";
+import CustomInput from "../../components/ui/CustomInput";
+import CustomButton from "../../components/ui/CustomButton";
+import { AuthContext } from "../../provider/Authprovider";
 
 const CustomerLogin = () => {
-
+  const [Email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
   const [gestureSequence, setGestureSequence] = useState([])
+
+  const {signInUser} = useContext(AuthContext)
+
+  const handleLogin = async () => {
+    try {
+      await signInUser(Email, password);
+      console.log('User logged in successfully');
+    } catch (error) {
+      console.log('Login Error:', error);
+    }
+  };
+
 
   const handleGesture = ({ nativeEvent }) => {
 
@@ -28,7 +43,7 @@ const CustomerLogin = () => {
       console.log(translationX, translationY, direction);
 
       const newSequence = [...gestureSequence, direction].slice(-5)
-      
+
       setGestureSequence(newSequence)
 
       if (newSequence.join(' ') === 'up up down left right') {
@@ -51,10 +66,40 @@ const CustomerLogin = () => {
               keyboardShouldPersistTaps='handled'
               contentContainerStyle={styles.subContainer}
             >
-           <View style={styles.content}>
-              <Image source={require('../../assets/image1/01.png')} style={styles.logo} />
-              <CustomText variant="h2" style={{color:'black'}}>Ecommerce app</CustomText>
-           </View>
+              <View style={styles.content}>
+                <Image source={require('../../assets/image1/01.png')} style={styles.logo} />
+                <CustomText variant="h2" style={{ color: 'black', fontWeight: 'bold' }}>Login or signup</CustomText>
+                <CustomInput
+                  onChangeText={(text) => { setEmail(text) }}
+                  onClear={() => setEmail('')}
+                  value={Email}
+                  left={
+                    <CustomText
+                      style={styles.phoneText}
+                      variant="h6"
+                    >
+                    </CustomText>}
+                  placeholder="enter your Email"
+                />
+                <CustomInput
+                  onChangeText={(text) => { setPassword(text) }}
+                  onClear={() => setPassword('')}
+                  value={password}
+                  left={
+                    <CustomText
+                      style={styles.phoneText}
+                      variant="h6"
+                    >
+                    </CustomText>}
+                  placeholder="enter your password"
+
+                />
+
+                <CustomButton title='Login' disabled={password.length < 6}
+                  loading={loading}
+                  onPress={()=>handleLogin()}
+                />
+              </View>
 
             </Animated.ScrollView>
           </PanGestureHandler>
@@ -74,17 +119,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20
   },
-  logo:{
-     height:50,
-     width:50,
-     borderRadius:20,
-     marginVertical:20
+  logo: {
+    height: 50,
+    width: 50,
+    borderRadius: 20,
+    marginVertical: 20
   },
-  content:{
-     justifyContent:'center',
-     alignItems:'center',
-     width:'100%',
-     paddingHorizontal:10
+  content: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    paddingHorizontal: 10,
+  },
+  phoneText: {
+    marginLeft: 10,
+    color: 'black'
   }
 })
 
