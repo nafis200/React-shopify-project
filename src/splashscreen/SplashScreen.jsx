@@ -22,7 +22,7 @@ const SplashScreen = () => {
     console.log('Retrieved token:', accessToken);
     
     if(accessToken){
-
+           
     }
     resetAndNavigate("CustomerLogin")
     return false
@@ -33,6 +33,7 @@ const SplashScreen = () => {
   useEffect(() => {
     const requestLocationPermission = async () => {
       try {
+        tokenCheck()
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
           {
@@ -70,7 +71,9 @@ const SplashScreen = () => {
         console.warn('Error requesting location permission:', err);
       }
     };
-    requestLocationPermission();
+    const timeoutId = setTimeout(requestLocationPermission,2000)
+    return ()=> clearTimeout(timeoutId)
+
   }, []);
 
   return (
