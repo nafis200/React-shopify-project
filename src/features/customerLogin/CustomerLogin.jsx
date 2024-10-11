@@ -1,11 +1,12 @@
 
 
-import { View, Text, StyleSheet, Animated } from "react-native";
+import { View, Text, StyleSheet, Animated, Image } from "react-native";
 import React, { useState } from "react";
 import { GestureHandlerRootView, PanGestureHandler, State } from "react-native-gesture-handler";
 import CustomSafeAreaView from "../../components/CustomSafeAreaView.jsx/CustomSafeAreaView";
 import ProductSlider from "../../components/login/ProductSlider";
 import { resetAndNavigate } from "../../utils/NavigationUtils";
+import CustomText from "../../components/ui/CustomText";
 
 const CustomerLogin = () => {
 
@@ -27,6 +28,7 @@ const CustomerLogin = () => {
       console.log(translationX, translationY, direction);
 
       const newSequence = [...gestureSequence, direction].slice(-5)
+      
       setGestureSequence(newSequence)
 
       if (newSequence.join(' ') === 'up up down left right') {
@@ -49,8 +51,10 @@ const CustomerLogin = () => {
               keyboardShouldPersistTaps='handled'
               contentContainerStyle={styles.subContainer}
             >
-
-
+           <View style={styles.content}>
+              <Image source={require('../../assets/image1/01.png')} style={styles.logo} />
+              <CustomText variant="h2" style={{color:'black'}}>Ecommerce app</CustomText>
+           </View>
 
             </Animated.ScrollView>
           </PanGestureHandler>
@@ -69,6 +73,18 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     marginBottom: 20
+  },
+  logo:{
+     height:50,
+     width:50,
+     borderRadius:20,
+     marginVertical:20
+  },
+  content:{
+     justifyContent:'center',
+     alignItems:'center',
+     width:'100%',
+     paddingHorizontal:10
   }
 })
 
