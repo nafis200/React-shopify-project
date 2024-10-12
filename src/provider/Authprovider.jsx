@@ -58,8 +58,10 @@ const Authprovider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = auth().onAuthStateChanged(async (currentuser) => {
-      setUser(currentuser);
+      
       if (currentuser) {
+        setUser(currentuser);
+        setLoading(true)
         const userInfo = { email: currentuser.email };
         try {
           const response = await axiosPublic.post('/jwt', userInfo);
@@ -75,6 +77,8 @@ const Authprovider = ({ children }) => {
       } else {
         await AsyncStorage.removeItem('access-token');
         const token = await AsyncStorage.getItem('access-token');
+        setUser('')
+        setLoading(false)
       }
     });
 

@@ -5,7 +5,7 @@ import React from "react";
 const Deliveryogin = () => {
   return (
     <View>
-      <Text>Deliveryogin</Text>
+      <Text style={{color:'black'}}>Deliveryogin</Text>
     </View>
   );
 };

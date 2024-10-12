@@ -1,20 +1,16 @@
-import { View, Text, StyleSheet, Animated, Image, TouchableOpacity, Alert } from "react-native";
+import { View, Text, StyleSheet, Animated, Image, TouchableOpacity, Alert, SafeAreaView } from "react-native";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { GestureHandlerRootView, PanGestureHandler, State } from "react-native-gesture-handler";
 import CustomSafeAreaView from "../../components/CustomSafeAreaView.jsx/CustomSafeAreaView";
 import ProductSlider from "../../components/login/ProductSlider";
-import { navigate, resetAndNavigate } from "../../utils/NavigationUtils";
+import { resetAndNavigate } from "../../utils/NavigationUtils";
 import CustomText from "../../components/ui/CustomText";
 import CustomInput from "../../components/ui/CustomInput";
 import CustomButton from "../../components/ui/CustomButton";
 import { AuthContext } from "../../provider/Authprovider";
-import { NavigationContainer } from '@react-navigation/native';
-import useAxiospublic from "../../provider/hooks/useAxiospublic";
-import { useQuery } from "@tanstack/react-query";
 import useKeyboardHeight from "../../utils/usekeyboard";
-
-
 const CustomerLogin = () => {
+
   const [Email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -33,7 +29,7 @@ const CustomerLogin = () => {
       }).start();
     } else {
       Animated.timing(animatedValue, {
-        toValue: -keyboardHeight * 0.84,
+        toValue: -keyboardHeight * 0.8,
         duration: 1000,
         useNativeDriver: true,
       }).start();
@@ -41,23 +37,7 @@ const CustomerLogin = () => {
   }, [keyboardHeight]);
 
 
-  const { signInUser, user } = useContext(AuthContext)
-
-
-
-  const axiosPublic = useAxiospublic()
-
-  const { data: users = [] } = useQuery({
-    queryKey: ['users', user?.email],
-    queryFn: async () => {
-      const res = await axiosPublic.get(`/users/${user?.email}`); // Fetch all users
-      return res.data;
-    }
-  });
-
-
-
-
+  const { signInUser} = useContext(AuthContext)
   const handleLogin = async () => {
     try {
       await signInUser(Email, password);
@@ -68,6 +48,7 @@ const CustomerLogin = () => {
           { text: "OK", onPress: () => console.log("OK Pressed") }
         ]
       );
+      resetAndNavigate('ProductDashboard')
     } catch (error) {
       Alert.alert(
         "Alert Title",
@@ -134,6 +115,7 @@ const CustomerLogin = () => {
                     >
                     </CustomText>}
                   placeholder="enter your Email"
+                  style={{color:'blue'}}
                 />
                 <CustomInput
                   onChangeText={(text) => { setPassword(text) }}
@@ -200,6 +182,20 @@ const styles = StyleSheet.create({
     color: 'blue', // Make it look like a link
     textDecorationLine: 'underline',
   },
+  footer:{
+    borderTopWidth: 0.8,
+    borderColor:'black',
+    paddingBottom:10,
+    zIndex:22,
+    position:'absolute',
+    bottom:0,
+    justifyContent:'center',
+    alignItems:'center',
+    padding:10,
+    backgroundColor:'#f8f9fc',
+    width:'100%',
+    marginTop:40
+  }
 })
 
 export default CustomerLogin;
