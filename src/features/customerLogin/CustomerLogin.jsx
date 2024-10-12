@@ -9,6 +9,8 @@ import CustomInput from "../../components/ui/CustomInput";
 import CustomButton from "../../components/ui/CustomButton";
 import { AuthContext } from "../../provider/Authprovider";
 import { NavigationContainer } from '@react-navigation/native';
+import useAxiospublic from "../../provider/hooks/useAxiospublic";
+import { useQuery } from "@tanstack/react-query";
 
 
 const CustomerLogin = () => {
@@ -17,7 +19,24 @@ const CustomerLogin = () => {
   const [loading, setLoading] = useState(false)
   const [gestureSequence, setGestureSequence] = useState([])
 
-  const { signInUser } = useContext(AuthContext)
+  const { signInUser,user} = useContext(AuthContext)
+
+  
+  
+  const axiosPublic = useAxiospublic()
+  
+  const { data: users = []} = useQuery({
+    queryKey: ['users',user?.email],
+    queryFn: async () => {
+        const res = await axiosPublic.get(`/users/${user?.email}`); // Fetch all users
+        return res.data;
+    }
+});
+  
+ console.log(users.role);
+ 
+ 
+ 
 
   const handleLogin = async () => {
     try {

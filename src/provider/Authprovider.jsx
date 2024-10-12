@@ -1,13 +1,13 @@
 
 
-import React, { createContext, useState, useEffect} from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import useAxiospublic from './hooks/useAxiospublic';
 export const AuthContext = createContext()
-
-const Authprovider = ({children}) => {
+import { useQuery } from "@tanstack/react-query";
+const Authprovider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const axiosPublic = useAxiospublic()
@@ -30,10 +30,10 @@ const Authprovider = ({children}) => {
   const createUser = async (email, password) => {
     try {
       await auth().createUserWithEmailAndPassword(email, password)
-      .then((result)=>{
-         console.log(result);
-         
-      })
+        .then((result) => {
+          console.log(result);
+
+        })
     } catch (error) {
       console.error('Registration Error:', error);
       throw error;
@@ -55,29 +55,26 @@ const Authprovider = ({children}) => {
       console.error('Logout Error:', error);
     }
   };
-  
+
   useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged(async(currentuser) => {
+    const unsubscribe = auth().onAuthStateChanged(async (currentuser) => {
       setUser(currentuser);
       if (currentuser) {
         const userInfo = { email: currentuser.email };
         try {
           const response = await axiosPublic.post('/jwt', userInfo);
           await AsyncStorage.setItem('access-token', response.data.token);
-          console.log('Token stored:', response.data.token);
-          if(response.data.token){
-             setLoading(false)
+          if (response.data.token) {
+            setLoading(false)
           }
           const token = await AsyncStorage.getItem('access-token');
-          console.log('Retrieved token:', token);
-  
+
         } catch (error) {
           console.error('Error:', error);
         }
       } else {
         await AsyncStorage.removeItem('access-token');
         const token = await AsyncStorage.getItem('access-token');
-        console.log('Token after logout:', token);
       }
     });
 
@@ -93,9 +90,9 @@ const Authprovider = ({children}) => {
     signInWithGoogle
   }
 
-    return (
-        <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
 };
 
 export default Authprovider;
