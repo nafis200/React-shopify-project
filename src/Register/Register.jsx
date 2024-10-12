@@ -8,6 +8,7 @@ import CustomButton from '../components/ui/CustomButton';
 import { AuthContext } from '../provider/Authprovider';
 import { resetAndNavigate } from '../utils/NavigationUtils';
 import auth from '@react-native-firebase/auth';
+import useAxiospublic from '../provider/hooks/useAxiospublic';
 const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -15,12 +16,13 @@ const Register = () => {
     const [photo, setPhoto] = useState('')
     const [loading, setLoading] = useState(false)
     const {createUser,logout} = useContext(AuthContext)
+    const axiosPublic = useAxiospublic()
  
     const onRegister = async () => {
-        try {
-         console.log('ellow register');
-         
+        try { 
           const result = await createUser(email, password); 
+          const userInfo = {email,name, role:'customer'}
+          axiosPublic.post('/users',userInfo)
           if (auth().currentUser) { 
             await auth().currentUser.updateProfile({
               displayName: name || 'not given',
