@@ -5,7 +5,7 @@ import { NoticeHeight } from "../../utils/Scaling";
 import CustomText from "../../components/ui/CustomText";
 import Svg, { Circle, Defs, G, Path, Rect, Use } from 'react-native-svg';
 import { wavyData } from "../../Dummydata/Dummydata";
-
+  
 const Notice = () => {
   return (
     <View style={{height:NoticeHeight}}>

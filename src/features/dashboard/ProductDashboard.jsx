@@ -2,6 +2,7 @@ import { View, Text, Animated as RNAnimated, SafeAreaView } from "react-native";
 import React, { useRef, useEffect } from "react";
 import { NoticeHeight } from "../../utils/Scaling";
 import NoticeAnimation from "./NoticeAnimation";
+import Visual from "./Visual";
 
 const Notice_Height = -(NoticeHeight + 12);  
 // 12 change 50 then many is support
@@ -32,12 +33,16 @@ const ProductDashboard = () => {
     return () => clearTimeout(timeoutId);
   }, []);
 
+  
+  
+
   return (
     <NoticeAnimation noticePosition={noticePosition}>
       <>
+        <Visual/>
         <SafeAreaView/>
           <View style={{ flex: 1 }}>
-            <Text style={{ color: 'black',backgroundColor:'yellow'}}>ProductDashboard</Text>
+            <Text style={{ color: 'black'}}>ProductDashboard</Text>
           </View>
         
       </>
