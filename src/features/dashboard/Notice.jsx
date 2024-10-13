@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 import React from "react";
 import { NoticeHeight } from "../../utils/Scaling";
 import CustomText from "../../components/ui/CustomText";
+import Svg, { Circle, Defs, G, Path, Rect, Use } from 'react-native-svg';
+import { wavyData } from "../../Dummydata/Dummydata";
 
 const Notice = () => {
   return (
@@ -19,6 +21,22 @@ const Notice = () => {
                 </SafeAreaView>
             </View>
       </View>
+
+      <Svg
+      width='100%'
+      height='35'
+      fill='#CCD5E4'
+      viewBox="0 0 4000 1000"
+      preserveAspectRatio="none"
+      style={styles.wave}
+      >
+        <Defs>
+            <Path id='wavepath' d={wavyData} ></Path>
+        </Defs>
+      </Svg>
+      <G>
+        <Use href="#wavepath" y="321"></Use>
+      </G>
     </View>
   );
 };
@@ -41,6 +59,11 @@ const styles = StyleSheet.create({
         color:'#2D3875',
         marginBottom:8,
         textAlign:'center',
+    },
+    wave:{
+        width:'100%',
+        color:'black',
+        transform:[{rotateX:'180deg'}]
     }
 })
 

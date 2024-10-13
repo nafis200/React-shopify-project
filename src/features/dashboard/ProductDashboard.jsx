@@ -24,20 +24,20 @@ const ProductDashboard = () => {
     }).start();
   };
 
-  // useEffect(() => {
-  //   slideDown();
-  //   const timeoutId = setTimeout(() => {
-  //     slideUp();
-  //   }, 3500);
-  //   return () => clearTimeout(timeoutId);
-  // }, []);
+  useEffect(() => {
+    slideDown();
+    const timeoutId = setTimeout(() => {
+      slideUp();
+    }, 3500);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <NoticeAnimation noticePosition={noticePosition}>
       <>
         <SafeAreaView/>
           <View style={{ flex: 1 }}>
-            <Text style={{ color: 'black',backgroundColor:'yellow',marginTop:40 }}>ProductDashboard</Text>
+            <Text style={{ color: 'black',backgroundColor:'yellow'}}>ProductDashboard</Text>
           </View>
         
       </>

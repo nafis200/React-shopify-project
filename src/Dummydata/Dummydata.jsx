@@ -10,3 +10,5 @@ export const imageData = [
     require('../assets/image1/A4dd201088220449ba84815192987a544C.png'),
     require('../assets/image1/FGN-09-2-Min-Instant-Chicken-Masala-small.png'),
 ]
+
+export const wavyData = "M 0 2000 0 500 Q 62.5 280 125 500 t 125 0 125 0 125 0 125 0 125 0 125 0 125 0 125 0 125 0 125 0   125 0 125 0 125 0  125 0 125 0 125 0  125 0 125 0 125 0  125 0 125 0 125 0  125 0 125 0 125 0  125 0 125 0 125 0  125 0 125 0 125 0  125 0 125 0 125 0  125 0 125 0 125 0  125 0 125 0 125 0 v1000 z"
