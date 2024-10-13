@@ -35,11 +35,11 @@ const ProductDashboard = () => {
   return (
     <NoticeAnimation noticePosition={noticePosition}>
       <>
-        <SafeAreaView>
+        <SafeAreaView/>
           <View style={{ flex: 1 }}>
-            <Text style={{ color: 'black' }}>ProductDashboard</Text>
+            <Text style={{ color: 'black',backgroundColor:'yellow' }}>ProductDashboard</Text>
           </View>
-        </SafeAreaView>
+        
       </>
     </NoticeAnimation>
   );
