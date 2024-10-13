@@ -1,32 +1,44 @@
+import { View, Text, Animated as RNAnimated } from "react-native";
+import React, { useRef, useEffect } from "react";
+import { NoticeHeight } from "../../utils/Scaling";
+import NoticeAnimation from "./NoticeAnimation";
 
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useContext } from "react";
-import useAxiosSecure from "../../provider/hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
-import { AuthContext } from "../../provider/Authprovider";
+const Notice_Height = -(NoticeHeight + 12);
+
 const ProductDashboard = () => {
-  const {logout} = useContext(AuthContext)
-  const axiosSecure = useAxiosSecure()
-  const { data: users = [],isLoading,refetch} = useQuery({
-    queryKey: ['users'],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/users`);
-      return res.data;
-    }
-  });
+  const noticePosition = useRef(new RNAnimated.Value(NoticeHeight)).current;
 
-  
+  const slideUp = () => {
+    RNAnimated.timing(noticePosition, {
+      toValue: Notice_Height,
+      duration: 1200,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const slideDown = () => {
+    RNAnimated.timing(noticePosition, {
+      toValue: 0,
+      duration: 1200,
+      useNativeDriver: false, 
+    }).start();
+  };
+
+  useEffect(() => {
+    slideDown();
+    const timeoutId = setTimeout(() => {
+      slideUp();
+    }, 3500);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
-    <View>
-      <Text style={{color:'black'}}>ProductDashboard</Text>
-      <Text style={{color:'black'}}>ProductDashboard</Text>
-      <Text style={{color:'black'}}>ProductDashboard</Text>
-      <Text style={{color:'black'}}>ProductDashboard</Text>
-    </View>
+    <NoticeAnimation noticePosition={noticePosition}>
+      <View>
+        <Text>ProductDashboard</Text>
+      </View>
+    </NoticeAnimation>
   );
 };
 
 export default ProductDashboard;
-
-const styles = StyleSheet.create({});

@@ -11,6 +11,7 @@ import CustomerLogin from '../features/customerLogin/CustomerLogin';
 import Register from '../Register/Register';
 import ProductDashboard from '../features/dashboard/ProductDashboard';
 import Extranavigation from '../splashscreen/Extranavigation';
+import DeliveryDashboard from '../features/dashboard/DeliveryDashboard';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,7 @@ const Navigation = () => {
                 <Stack.Screen name="SplashScreen" component={SplashScreen} />
                 <Stack.Screen name="Extra" component={Extranavigation} />
                 <Stack.Screen name="ProductDashboard" component={ProductDashboard} />
+                <Stack.Screen name="DeliveryDashboard" component={DeliveryDashboard} />
                 <Stack.Screen
                     options={{
                         animation: 'fade'

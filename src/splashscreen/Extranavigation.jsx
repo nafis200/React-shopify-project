@@ -27,7 +27,7 @@ const { user} = useContext(AuthContext);
         
       }
       else{
-          resetAndNavigate('DeliveryLogin')
+          resetAndNavigate('DeliveryDashboard')
           
       }
       
