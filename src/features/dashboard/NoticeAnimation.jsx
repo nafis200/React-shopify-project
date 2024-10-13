@@ -10,12 +10,12 @@ const NoticeAnimation = ({ noticePosition, children }) => {
     <View style={styles.container}>
       <RNAnimated.View 
         style={[
-          styles.noticeContainer, 
-          {
-            transform: [{ translateY: noticePosition }]  
-          }
+          styles.noticeContainer
         ]}
       >
+        {/* {
+            transform: [{ translateY: noticePosition }]  
+          } */}
         <Notice/>
       </RNAnimated.View>
 

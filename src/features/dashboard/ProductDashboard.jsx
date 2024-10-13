@@ -3,8 +3,8 @@ import React, { useRef, useEffect } from "react";
 import { NoticeHeight } from "../../utils/Scaling";
 import NoticeAnimation from "./NoticeAnimation";
 
-const Notice_Height = -(NoticeHeight + 12);
-
+const Notice_Height = -(NoticeHeight + 12);  
+// 12 change 50 then many is support
 const ProductDashboard = () => {
   const noticePosition = useRef(new RNAnimated.Value(NoticeHeight)).current;
 
@@ -24,20 +24,20 @@ const ProductDashboard = () => {
     }).start();
   };
 
-  useEffect(() => {
-    slideDown();
-    const timeoutId = setTimeout(() => {
-      slideUp();
-    }, 3500);
-    return () => clearTimeout(timeoutId);
-  }, []);
+  // useEffect(() => {
+  //   slideDown();
+  //   const timeoutId = setTimeout(() => {
+  //     slideUp();
+  //   }, 3500);
+  //   return () => clearTimeout(timeoutId);
+  // }, []);
 
   return (
     <NoticeAnimation noticePosition={noticePosition}>
       <>
         <SafeAreaView/>
           <View style={{ flex: 1 }}>
-            <Text style={{ color: 'black',backgroundColor:'yellow' }}>ProductDashboard</Text>
+            <Text style={{ color: 'black',backgroundColor:'yellow',marginTop:40 }}>ProductDashboard</Text>
           </View>
         
       </>
