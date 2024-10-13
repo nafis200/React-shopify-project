@@ -33,10 +33,10 @@ const Notice = () => {
         <Defs>
             <Path id='wavepath' d={wavyData} ></Path>
         </Defs>
-      </Svg>
       <G>
         <Use href="#wavepath" y="321"></Use>
       </G>
+      </Svg>
     </View>
   );
 };
