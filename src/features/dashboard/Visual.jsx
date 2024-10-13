@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
     cloud:{
         width:screenWidth,
         resizeMode:'stretch',
-        height:'100%',
-        backgroundColor:'black'
+        height:100,
+        
     }
 });
 
