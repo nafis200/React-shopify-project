@@ -4,6 +4,7 @@ import { NoticeHeight } from "../../utils/Scaling";
 import NoticeAnimation from "./NoticeAnimation";
 import Visual from "./Visual";
 import AnimatedHeader from "./AnimatedHeader";
+import StickySearchbar from "./StickySearchbar";
 
 const Notice_Height = -(NoticeHeight + 12);
 // 12 change 50 then many is support
@@ -52,6 +53,7 @@ const ProductDashboard = () => {
               return () => clearTimeout(timeoutId)
             }}
           />
+           <StickySearchbar/>
         </ScrollView>
 
 

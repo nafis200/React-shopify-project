@@ -30,6 +30,7 @@ const NoticeAnimation = ({ noticePosition, children }) => {
           }
         ]}
       >
+        
         {children}
       </RNAnimated.View>
     </View>
