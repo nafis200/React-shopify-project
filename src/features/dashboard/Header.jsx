@@ -40,6 +40,11 @@ const Header = ({ showNotice }) => {
 
                 </View>
             </TouchableOpacity>
+
+            <TouchableOpacity>
+                <Icon name='account-circle-outline' size={RFValue(36)} color="white" />
+            </TouchableOpacity>
+
         </View>
     );
 };
