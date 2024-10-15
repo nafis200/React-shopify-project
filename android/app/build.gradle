@@ -70,6 +70,10 @@ dependencies {
 // 
 
 
+
+ // Add this line
+
+
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")
     } else {

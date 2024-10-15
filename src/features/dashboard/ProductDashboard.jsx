@@ -5,6 +5,9 @@ import NoticeAnimation from "./NoticeAnimation";
 import Visual from "./Visual";
 import AnimatedHeader from "./AnimatedHeader";
 import StickySearchbar from "./StickySearchbar";
+import ContentContainer from "./ContentContainer";
+import CustomText from "../../components/ui/CustomText";
+import { RFValue } from "react-native-responsive-fontsize";
 
 const Notice_Height = -(NoticeHeight + 12);
 // 12 change 50 then many is support
@@ -53,9 +56,15 @@ const ProductDashboard = () => {
               return () => clearTimeout(timeoutId)
             }}
           />
-           <StickySearchbar/>
-        </ScrollView>
+          <StickySearchbar />
 
+          <ContentContainer />
+
+          <View style={{ backgroundColor: '#F8F8F8', padding: 20 }}>
+            <CustomText fontSize={RFValue(32)} style={{ opacity: 0.2, color: 'black', marginTop: 10, paddingBottom: 100 }} >Our shop last min</CustomText>
+          </View>
+
+        </ScrollView>
 
       </>
     </NoticeAnimation>
