@@ -1,17 +1,21 @@
-
 import { StyleSheet, Text, View,Image } from "react-native";
 import React from "react";
-import { screenWidth } from "../../utils/Scaling";
+import { screenHeight, screenWidth } from "../../utils/Scaling";
 import Carousel from 'react-native-reanimated-carousel';
-import img from '../../assets/image1/279358489_102996742407844_2843731233420424889_n.jpg'
+import { useSharedValue } from "react-native-reanimated";
+import Scalepress from "components/ui/Scalepress";
+
 
 const AdCarousel = ({imageData}) => {
 
-  const images = [
-    { id: 1, uri: 'https://i.postimg.cc/hvNySLBT/01.png' },
-    { id: 2, uri: 'https://i.postimg.cc/hvNySLBT/01.png' },
-    { id: 3, uri: 'https://i.postimg.cc/hvNySLBT/01.png' },
-  ];
+  const progressValue = useSharedValue(0) 
+  const baseOption = {
+      vertical:false,
+      width:screenWidth,
+      height:screenHeight * 0.5
+  }  
+
+  
   
     const baseOptions= {
         vertical:false,
@@ -20,38 +24,47 @@ const AdCarousel = ({imageData}) => {
     }
 
   return (
-    <View style={{left:-10,marginVertical:20}}>
-      <Text>AdCarousel</Text>
-      <Carousel
-        loop
-        width={300} // Set your desired width
-        height={200} // Set your desired height
-        autoPlay={true}
-        data={images}
-        scrollAnimationDuration={1000}
-        renderItem={({ item }) => (
-          <View style={styles.slide}>
-            <Image source={img} />
-            <Text style={styles.text}>Image {item.id}</Text>
-          </View>
-        )}
-      />
+    <View style={{left:-20,marginVertical:20}}>
+     <Carousel 
+     {...baseOption}
+     loop
+     pagingEnabled 
+     snapEnabled 
+     autoPlay 
+     autoPlayInterval={3000} 
+     mode="parallax"
+     data={imageData}
+     modeConfig={{
+       parallaxScrollingOffset: 0,
+       parallaxScrollingScale: 0.94
+     }}
+     renderItem={({item})=>{
+       return(
+        <Scalepress style={styles.imageContainer}>
+           <Image 
+         source={item}
+         style={styles.img}
+         />
+        </Scalepress>
+       )
+     }}
+     />
+     
     </View>
   );
 };
 
-export default AdCarousel;
-
 const styles = StyleSheet.create({
-    imageContainer:{
-        width:'100%',
-        height:'100%'
-    },
-    img:{
-        width:'100%',
-        height:'100%',
-        resizeMode:'cover',
-        borderRadius:20
-    },
-    
-});
+   imageContainer:{
+     width:'100%',
+     height:'100%'
+   },
+   img:{
+     width:'100%',
+     height:'100%',
+     resizeMode:'cover',
+     borderRadius:20
+   }
+})
+
+export default AdCarousel;
