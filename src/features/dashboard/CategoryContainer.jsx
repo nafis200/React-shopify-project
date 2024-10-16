@@ -28,7 +28,7 @@ const CategoryContainer = () => {
           return (
             <Scalepress onPress={() => navigate('ProductCategory')} key={index} style={styles.item} >
               <View style={styles.imageContainer} >
-                 <Image source={item.image} style={styles.image} />
+                 <Image source={{ uri: item.image}} style={styles.image} />
               </View>
               <CustomText style={styles.text} variant="h8">{item.product_name}</CustomText>
             </Scalepress>
@@ -56,7 +56,7 @@ export default CategoryContainer;
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 15
+    marginVertical: 25
   },
   row: {
     flexDirection: 'row',
@@ -84,8 +84,9 @@ const styles = StyleSheet.create({
       color:'black'
   },
   image:{
-     width:'100%',
-     height:'100%',
-     resizeMode:'contain'
+     width:'20%',
+     height:'20%',
+     resizeMode:'contain',
+     backgroundColor:'black'
   }
 });
