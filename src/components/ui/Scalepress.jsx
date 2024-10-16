@@ -1,24 +1,26 @@
 
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View,Animated } from "react-native";
 import React from "react";
-import Animated, { useSharedValue, useAnimatedStyle, withSpring } from "react-native-reanimated";
+import { useSharedValue, useAnimatedStyle, withSpring } from "react-native-reanimated";
 
 const Scalepress = ({ onPress, children, style }) => {
-  const scaleValue = useSharedValue(1);
+  const scaleValue = new Animated.Value(1);
 
   const onPressIn = () => {
-    scaleValue.value = withSpring(0.92);
+     Animated.spring(scaleValue,{
+        toValue: 0.92,
+        useNativeDriver:true
+     }).start()
   };
 
   const onPressOut = () => {
-    scaleValue.value = withSpring(1);
+    Animated.spring(scaleValue,{
+      toValue: 1,
+      useNativeDriver:true
+   }).start()
   };
 
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ scale: scaleValue.value }],
-    };
-  });
+  
 
   return (
     <TouchableOpacity
@@ -26,9 +28,9 @@ const Scalepress = ({ onPress, children, style }) => {
       onPressOut={onPressOut}
       onPress={onPress}
       activeOpacity={1}
-      style={style}
+      style={{...style}}
     >
-      <Animated.View style={[animatedStyle, { width: '100%' }]}>
+      <Animated.View style={[{transform:[{scale:scaleValue}], width:'100%'}]}>
         {children}
       </Animated.View>
     </TouchableOpacity>

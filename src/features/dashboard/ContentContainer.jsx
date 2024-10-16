@@ -6,15 +6,15 @@ import AdCarousel from "./AdCarousel";
 import { imageData } from './../../Dummydata/Dummydata';
 import CustomText from "components/ui/CustomText";
 import CategoryContainer from "./CategoryContainer";
-import { adData } from "@assets/AllData";
+import { adData, categories } from "@assets/AllData";
 
 
 const ContentContainer = () => {
   return (
     <View style={styles.container}>
       <AdCarousel imageData={adData} />
-      {/* <CustomText variant="h5" style={{ color: 'black' }} >Grocery & Kitchen</CustomText>
-      <CategoryContainer /> */}
+      <CustomText variant="h5" style={{ color: 'black' }} >Grocery & Kitchen</CustomText>
+      <CategoryContainer data={categories} />
       
     </View>
   );

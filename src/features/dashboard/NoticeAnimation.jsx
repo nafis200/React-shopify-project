@@ -15,7 +15,7 @@ const NoticeAnimation = ({ noticePosition, children }) => {
           }
         ]}
       >
-        
+          
         <Notice/>
       </RNAnimated.View>
 

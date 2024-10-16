@@ -7,7 +7,7 @@ import Scalepress from "components/ui/Scalepress";
 import { navigate } from "utils/NavigationUtils";
 import CustomText from "components/ui/CustomText";
 
-const CategoryContainer = () => {
+const CategoryContainer = ({data}) => {
   const axiosPublic = useAxiospublic();
   const { data: Data = [], isLoading, refetch } = useQuery({
     queryKey: ['products'],
@@ -27,9 +27,9 @@ const CategoryContainer = () => {
           return (
             <Scalepress onPress={() => navigate('ProductCategory')} key={index} style={styles.item} >
               <View style={styles.imageContainer} >
-                 <Image source={{ uri: item.image}} style={styles.image} />
+                 <Image source={item.image} style={styles.image} />
               </View>
-              <CustomText style={styles.text} variant="h8">{item.product_name}</CustomText>
+              <CustomText style={styles.text} variant="h8">{item.name}</CustomText>
             </Scalepress>
           );
         })}
@@ -42,10 +42,10 @@ const CategoryContainer = () => {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        {renderItems(Data?.slice(0,4))}
+        {renderItems(data?.slice(0,4))}
       </View>
       <View style={styles.row}>
-      {renderItems(Data?.slice(4,8))}
+      {renderItems(data?.slice(4,8))}
       </View>
     </View>
   );

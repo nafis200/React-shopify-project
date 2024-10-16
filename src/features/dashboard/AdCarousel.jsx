@@ -13,19 +13,11 @@ const AdCarousel = ({imageData}) => {
   const baseOption = {
       vertical:false,
       width:screenWidth,
-      height:screenHeight * 0.5
+      height:screenHeight * 0.3
   }  
 
-  
-  
-    const baseOptions= {
-        vertical:false,
-        width:screenWidth,
-        height:screenWidth * 0.5
-    }
-
   return (
-    <View style={{left:-10, marginVertical:20}}>
+    <View style={{left:-20, marginVertical:20}}>
      <Carousel 
      {...baseOption}
      loop
