@@ -1,4 +1,4 @@
-import { View, Text, Animated as RNAnimated, SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import { View, Animated as RNAnimated, SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useRef, useEffect } from "react";
 import { NoticeHeight } from "../../utils/Scaling";
 import NoticeAnimation from "./NoticeAnimation";
@@ -13,15 +13,31 @@ import {
   CollapsibleContainer,
   CollapsibleHeaderContainer,
   CollapsibleScrollView,
+  useCollapsibleContext,
   withCollapsibleContext
 } from '@r0b0t3d/react-native-collapsible';
-
-
+import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Notice_Height = -(NoticeHeight + 12);
-// 12 change 50 then many is support
+
 const ProductDashboard = () => {
   const noticePosition = useRef(new RNAnimated.Value(NoticeHeight)).current;
+
+  const { scrollY, expand } = useCollapsibleContext();
+  const previousScroll = useRef(0);
+
+  const backToTopStyle = useAnimatedStyle(() => {
+    const isScrollingUp = scrollY.value < previousScroll.current && scrollY.value > 180;
+    const opacity = withTiming(isScrollingUp ? 1 : 0, { duration: 300 });
+    const translateY = withTiming(isScrollingUp ? 0 : 10, { duration: 300 });
+    previousScroll.current = scrollY.value;
+
+    return {
+      opacity,
+      transform: [{ translateY }]
+    };
+  });
 
   const slideUp = () => {
     RNAnimated.timing(noticePosition, {
@@ -52,35 +68,53 @@ const ProductDashboard = () => {
       <>
         <Visual />
         <SafeAreaView />
-        <CollapsibleContainer style={styles.panelContainer}>
-          <CollapsibleHeaderContainer containerStyle={styles.transparent} >
+        
+        <Animated.View style={[styles.backToTopBtn, backToTopStyle]}>
+          <TouchableOpacity
+            onPress={() => {
+              scrollY.value = 0; 
+              expand(); 
+            }}
+            style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}
+          >
+            <Icon name="arrow-up-circle-outline" color="white" size={24} />
+            <CustomText variant="h9" style={{ color: 'white' }}>
+              Back to Top
+            </CustomText>
+          </TouchableOpacity>
+        </Animated.View>
 
+        <CollapsibleContainer style={styles.panelContainer}>
+          <CollapsibleHeaderContainer containerStyle={styles.transparent}>
             <AnimatedHeader
               showNotice={() => {
-                slideDown()
+                slideDown();
                 const timeoutId = setTimeout(() => {
-                  slideUp()
-                }, 3500)
-                return () => clearTimeout(timeoutId)
+                  slideUp();
+                }, 3500);
+                return () => clearTimeout(timeoutId);
               }}
             />
             <StickySearchbar />
           </CollapsibleHeaderContainer>
 
-          <CollapsibleScrollView nestedScrollEnabled style={styles.panelContainer}
+          <CollapsibleScrollView
+            nestedScrollEnabled
+            style={styles.panelContainer}
             showsVerticalScrollIndicator={false}
           >
             <ContentContainer />
 
             <View style={{ backgroundColor: '#F8F8F8', padding: 20 }}>
-              <CustomText fontSize={RFValue(32)} style={{ opacity: 0.2, color: 'black'}} >Our shop last min</CustomText>
-              <CustomText fontSize={RFValue(32)} style={{ opacity: 0.2, color: 'black', marginTop: 10, paddingBottom: 100 }} >Developed by</CustomText>
+              <CustomText fontSize={RFValue(32)} style={{ opacity: 0.2, color: 'black' }}>
+                Our shop last min
+              </CustomText>
+              <CustomText fontSize={RFValue(32)} style={{ opacity: 0.2, color: 'black', marginTop: 10, paddingBottom: 100 }}>
+                Developed by
+              </CustomText>
             </View>
-
           </CollapsibleScrollView>
-
         </CollapsibleContainer>
-
       </>
     </NoticeAnimation>
   );
@@ -88,11 +122,24 @@ const ProductDashboard = () => {
 
 const styles = StyleSheet.create({
   panelContainer: {
-    flex: 1
+    flex: 1,
   },
   transparent: {
-    backgroundColor: "transparent"
+    backgroundColor: "transparent",
+  },
+  backToTopBtn: {
+    position: 'absolute',
+    alignSelf: 'center',
+    top: 100,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: 'black',
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    zIndex: 999,
   }
-})
+});
 
 export default withCollapsibleContext(ProductDashboard);
