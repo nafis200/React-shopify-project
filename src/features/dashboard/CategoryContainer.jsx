@@ -1,11 +1,10 @@
 
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View,Image } from "react-native";
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiospublic from "provider/hooks/useAxiospublic";
 import Scalepress from "components/ui/Scalepress";
 import { navigate } from "utils/NavigationUtils";
-import { Image } from "react-native-svg";
 import CustomText from "components/ui/CustomText";
 
 const CategoryContainer = () => {
@@ -84,8 +83,8 @@ const styles = StyleSheet.create({
       color:'black'
   },
   image:{
-     width:'20%',
-     height:'20%',
+     width:'100%',
+     height:'100%',
      resizeMode:'contain',
      backgroundColor:'black'
   }
