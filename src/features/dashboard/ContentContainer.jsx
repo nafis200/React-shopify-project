@@ -15,6 +15,14 @@ const ContentContainer = () => {
       <AdCarousel imageData={adData} />
       <CustomText variant="h5" style={{ color: 'black' }} >Grocery & Kitchen</CustomText>
       <CategoryContainer data={categories} />
+      <CustomText variant="h5" style={{ color: 'black' }} >Grocery & Kitchen</CustomText>
+      <CategoryContainer data={categories} />
+      <CustomText variant="h5" style={{ color: 'black' }} >Grocery & Kitchen</CustomText>
+      <CategoryContainer data={categories} />
+      <CustomText variant="h5" style={{ color: 'black' }} >Grocery & Kitchen</CustomText>
+      <CategoryContainer data={categories} />
+      <CustomText variant="h5" style={{ color: 'black' }} >Grocery & Kitchen</CustomText>
+      <CategoryContainer data={categories} />
       
     </View>
   );
