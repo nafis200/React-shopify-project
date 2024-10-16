@@ -25,7 +25,7 @@ const NoticeAnimation = ({ noticePosition, children }) => {
           {
             paddingTop: noticePosition.interpolate({
               inputRange: [Notice_HEIGHT, 0], 
-              outputRange: [0, Notice_HEIGHT + 20]
+              outputRange: [0, NoticeHeight + 20]
             }),
           }
         ]}

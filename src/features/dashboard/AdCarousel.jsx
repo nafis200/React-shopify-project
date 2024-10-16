@@ -6,6 +6,7 @@ import { useSharedValue } from "react-native-reanimated";
 import Scalepress from "components/ui/Scalepress";
 
 
+
 const AdCarousel = ({imageData}) => {
 
   const progressValue = useSharedValue(0) 
@@ -24,7 +25,7 @@ const AdCarousel = ({imageData}) => {
     }
 
   return (
-    <View style={{left:-20,marginVertical:20}}>
+    <View style={{left:-10, marginVertical:20}}>
      <Carousel 
      {...baseOption}
      loop

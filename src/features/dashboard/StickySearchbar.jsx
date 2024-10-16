@@ -14,7 +14,7 @@ const StickySearchbar = () => {
   });
 
   const backgroundColorChanges = useAnimatedStyle(() => {
-    const opacity = interpolate(scrollY.value, [0, 180], [0, 1]);
+    const opacity = interpolate(scrollY.value, [1, 180], [0, 1]);
     return { backgroundColor: `rgba(255, 255, 255, ${opacity})` }; 
   });
 

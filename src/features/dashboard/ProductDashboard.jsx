@@ -47,13 +47,6 @@ const ProductDashboard = () => {
     return () => clearTimeout(timeoutId);
   }, []);
 
-
-
-  // <View style={{ backgroundColor: '#F8F8F8', padding: 20 }}>
-  //   <CustomText fontSize={RFValue(32)} style={{ opacity: 0.2, color: 'black', marginTop: 10, paddingBottom: 100 }} >Our shop last min</CustomText>
-  // </View>
-
-
   return (
     <NoticeAnimation noticePosition={noticePosition}>
       <>
@@ -74,14 +67,19 @@ const ProductDashboard = () => {
             <StickySearchbar />
           </CollapsibleHeaderContainer>
 
-         <CollapsibleScrollView nestedScrollEnabled style={styles.panelContainer}
-         showsVerticalScrollIndicator={false}
-         >
-         <ContentContainer />
-         
-         </CollapsibleScrollView>
+          <CollapsibleScrollView nestedScrollEnabled style={styles.panelContainer}
+            showsVerticalScrollIndicator={false}
+          >
+            <ContentContainer />
 
-         </CollapsibleContainer>
+            <View style={{ backgroundColor: '#F8F8F8', padding: 20 }}>
+              <CustomText fontSize={RFValue(32)} style={{ opacity: 0.2, color: 'black'}} >Our shop last min</CustomText>
+              <CustomText fontSize={RFValue(32)} style={{ opacity: 0.2, color: 'black', marginTop: 10, paddingBottom: 100 }} >Developed by</CustomText>
+            </View>
+
+          </CollapsibleScrollView>
+
+        </CollapsibleContainer>
 
       </>
     </NoticeAnimation>

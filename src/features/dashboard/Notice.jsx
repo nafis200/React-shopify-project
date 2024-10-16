@@ -11,7 +11,7 @@ const Notice = () => {
     <View style={{height:NoticeHeight}}>
       <View style={styles.container}>
             <View style={styles.noticeContainer}>
-                <SafeAreaView style={{padding:20}}>
+                <SafeAreaView style={{padding:10}}>
                     <CustomText style={styles.heading} variant="h8">
                         It's raining near this location
                     </CustomText>

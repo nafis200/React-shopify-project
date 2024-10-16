@@ -6,11 +6,19 @@ import { darkWeatherColors } from "../../utils/Constants";
 import { screenHeight, screenWidth } from "../../utils/Scaling";
 import  LinearGradient from "react-native-linear-gradient";
 import LottieView from "lottie-react-native";
-import Animated from "react-native-reanimated";
+import Animated, { interpolate, useAnimatedStyle } from "react-native-reanimated";
+import { useCollapsibleContext } from "@r0b0t3d/react-native-collapsible";
 
 const Visual = () => {
+
+  const {scrollY} = useCollapsibleContext()
+  const headerAnimatedStyle = useAnimatedStyle(()=>{
+    const opacity = interpolate(scrollY.value,[0,120],[1,0])
+    return {opacity}
+  })
+
   return (
-    <Animated.View style={[styles.container]}>
+    <Animated.View style={[styles.container,headerAnimatedStyle]}>
       <LinearGradient colors={darkWeatherColors} style={styles.gradient} />
       <Image source={require('../../assets/image/cloud.png')} style={styles.cloud} />
      <LottieView  autoPlay={true} enableMergePathsAndroidForKitKatAndAbove={true}
