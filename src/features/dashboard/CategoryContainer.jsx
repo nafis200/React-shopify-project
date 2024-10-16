@@ -26,4 +26,14 @@ const CategoryContainer = () => {
 
 export default CategoryContainer;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container:{
+        marginVertical:15
+    },
+    row:{
+       flexDirection:'row',
+       justifyContent:'space-between',
+       alignItems:'baseline',
+       marginBottom:25
+    }
+});
