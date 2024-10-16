@@ -1,11 +1,12 @@
 
-import { StyleSheet, Text, View,Animated, Image } from "react-native";
+import { StyleSheet, Text, View,Image } from "react-native";
 import React from "react";
 
 import { darkWeatherColors } from "../../utils/Constants";
 import { screenHeight, screenWidth } from "../../utils/Scaling";
 import  LinearGradient from "react-native-linear-gradient";
 import LottieView from "lottie-react-native";
+import Animated from "react-native-reanimated";
 
 const Visual = () => {
   return (

@@ -55,7 +55,7 @@ export default CategoryContainer;
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 25
+    marginVertical:25
   },
   row: {
     flexDirection: 'row',

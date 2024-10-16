@@ -10,9 +10,10 @@ import CategoryContainer from "./CategoryContainer";
 const ContentContainer = () => {
   return (
     <View style={styles.container}>
-        <AdCarousel imageData={imageData} />
-        <CustomText variant="h5" style={{color:'black'}} >Grocery & Kitchen</CustomText>
-        <CategoryContainer/>
+      <AdCarousel imageData={imageData} />
+      <CustomText variant="h5" style={{ color: 'black' }} >Grocery & Kitchen</CustomText>
+      <CategoryContainer />
+      
     </View>
   );
 };
@@ -20,7 +21,7 @@ const ContentContainer = () => {
 export default ContentContainer;
 
 const styles = StyleSheet.create({
-   container:{
-      paddingHorizontal:20
-   }
+  container: {
+    paddingHorizontal: 20
+  }
 });
