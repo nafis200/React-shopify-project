@@ -6,6 +6,7 @@ import Sidebar from "./Sidebar";
 import { useQuery } from "@tanstack/react-query";
 import useAxiospublic from "provider/hooks/useAxiospublic";
 import ProductList from "./ProductList";
+import withCart from "features/cart/WithCart";
 
 
 const ProductCategory = () => {
@@ -73,7 +74,7 @@ const ProductCategory = () => {
   );
 };
 
-export default ProductCategory;
+export default withCart(ProductCategory);
 
 const styles = StyleSheet.create({
   mainContainer: {

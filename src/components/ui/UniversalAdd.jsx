@@ -10,6 +10,11 @@ const UniversalAdd = ({ item }) => {
 
   const { addItem, removeItem } = useCartStore()
 
+  // const cart = useCartStore(state => state.cart);
+
+  // console.log(cart);
+  
+
   return (
     <View style={[styles.container, { backgroundColor: count === 0 ? '#fff' : 'blue' }]}>
       {
