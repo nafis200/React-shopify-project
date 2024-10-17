@@ -17,7 +17,7 @@ const withCart = (WrappedComponent) => {
            
            <Cartsummary
            cartCount={cartCount}
-           cartImage = {cart[0]?.item?.image || require('@assets/products/10.png') }
+           cartImage = {cart[0]?.item?.image || null }
            />
 
         </CartAnimationWrapper>
