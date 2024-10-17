@@ -79,6 +79,21 @@ const styles = StyleSheet.create({
      width:'75%',
      justifyContent:'center',
      alignItems:'center',
-     backgroundColor:'#F3F4F7'
+     backgroundColor:'#F3F4F7',
+     overflow:'hidden'
+  },
+  selectedImageContainer:{
+     backgroundColor:'#CFFFDB'
+  },
+  indicator:{
+    position:'absolute',
+    right:0,
+    width:4,
+    height:80,
+    top:10,
+    alignSelf:'center',
+    backgroundColor:'yellow',
+    borderTopLeftRadius:15,
+    borderBottomRightRadius:15
   }
 });
