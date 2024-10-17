@@ -50,6 +50,11 @@ const styles = StyleSheet.create({
     color: 'blue'
   },
   counterContainer: {
-
+        flexDirection:'row',
+        alignItems:'center',
+        width:'100%',
+        paddingHorizontal:4,
+        paddingVertical:6,
+        justifyContent:'space-between'
   }
 });
