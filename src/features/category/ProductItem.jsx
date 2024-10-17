@@ -5,6 +5,7 @@ import { screenHeight } from "utils/Scaling";
 import CustomText from "components/ui/CustomText";
 import { RFValue } from "react-native-responsive-fontsize";
 import { opacity } from "react-native-reanimated/lib/typescript/Colors";
+import UniversalAdd from "components/ui/UniversalAdd";
 
 const ProductItem = ({ item, index }) => {
     const isSecondColumn = index % 2 != 0
@@ -27,20 +28,16 @@ const ProductItem = ({ item, index }) => {
             </CustomText>
 
             <View style={styles.priceContainer}>
-
                 <View>
-
                     <CustomText variant="h8" style={{ color: 'black' }}>
                         ${item.price}
                     </CustomText>
-                    <CustomText variant="h8" style={{ color: 'black',opacity:0.5 }}>
+                    <CustomText variant="h8" style={{ color: 'black', opacity: 0.5 }}>
                         ${item.discountPrice}
                     </CustomText>
-
+                    <UniversalAdd item={item} />
                 </View>
-
             </View>
-
         </View>
     );
 };
@@ -55,8 +52,8 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginLeft: 10,
         overflow: 'hidden',
-        borderWidth:2,
-        
+        borderWidth: 2,
+
     },
     imageContainer: {
         height: screenHeight * 0.14,
@@ -87,11 +84,11 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 10
     },
-    priceContainer:{
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'space-between',
-        paddingVertical:10,
-        marginTop:'auto'
+    priceContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingVertical: 10,
+        marginTop: 'auto'
     }
 });
