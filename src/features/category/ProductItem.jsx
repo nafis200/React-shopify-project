@@ -54,7 +54,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         marginBottom: 10,
         marginLeft: 10,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        borderWidth:2,
+        
     },
     imageContainer: {
         height: screenHeight * 0.14,
