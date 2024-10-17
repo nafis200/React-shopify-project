@@ -17,11 +17,12 @@ export const useCartStore = create(
             ...updatedCart[existingItemIndex],
             count: updatedCart[existingItemIndex].count + 1
           };
-          set({ cart: updatedCart });
+          // Only update once to reduce performance overhead
+          setTimeout(() => set({ cart: updatedCart }), 0);
         } else {
-          set({
+          setTimeout(() => set({
             cart: [...currentCart, { _id: item._id, item: item, count: 1 }]
-          });
+          }), 0);
         }
       },
 
@@ -44,7 +45,8 @@ export const useCartStore = create(
             updatedCart.splice(existingItemIndex, 1); // Remove item if count is 0
           }
 
-          set({ cart: updatedCart });
+          // Apply the update asynchronously
+          setTimeout(() => set({ cart: updatedCart }), 0);
         }
       },
 
@@ -61,7 +63,8 @@ export const useCartStore = create(
     }),
     {
       name: 'cart-storage',
-      storage: createJSONStorage(() => AsyncStorage)
+      storage: createJSONStorage(() => AsyncStorage),
+      partialize: (state) => ({ cart: state.cart }) // Persist only cart, not other state
     }
   )
 );
