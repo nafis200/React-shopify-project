@@ -60,6 +60,25 @@ const styles = StyleSheet.create({
     color: 'text'
   },
   categoryBtn: {
-
+       padding:10,
+       height:100,
+       paddingVertical:0,
+       justifyContent:'center',
+       alignItems:'center',
+       width:'100%'
+  },
+  image:{
+     width:'80%',
+     height:'80%',
+     resizeMode:'contain'
+  },
+  imageContainer:{
+     borderRadius:100,
+     height:'50%',
+     marginBottom:10,
+     width:'75%',
+     justifyContent:'center',
+     alignItems:'center',
+     backgroundColor:'#F3F4F7'
   }
 });
