@@ -17,15 +17,22 @@ const ProductCategory = () => {
   const { data: Data = [], isLoading, error } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/products`);
+      const res = await axiosPublic.get(`/category`);
       return res.data;
     },
   });
+
+    if (isLoading) {
+      return <Text style={{ color: 'black' }}>Loading......</Text>;
+    }
+  
+    
 
   useEffect(() => {
     if (Data.length > 0) {
       SetCategories(Data);
       SetSelectedCategory(Data[0]); 
+      SetCategoriesLoading(false)
     }
   }, [Data]);
 
@@ -36,6 +43,7 @@ const ProductCategory = () => {
       </View>
     );
   }
+
 
   if (error) {
     return (
