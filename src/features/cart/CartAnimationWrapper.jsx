@@ -53,4 +53,3 @@ const CartAnimationWrapper = ({cartCount,children}) => {
 
 export default CartAnimationWrapper;
 
-const styles = StyleSheet.create({});

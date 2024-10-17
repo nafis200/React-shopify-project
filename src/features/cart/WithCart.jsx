@@ -2,6 +2,8 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { useCartStore } from "state/cartStore";
+import CartAnimationWrapper from "./CartAnimationWrapper";
+import Cartsummary from "./Cartsummary";
 
 const withCart = (WrappedComponent) => {
   const WithCartComponent = (props) => {
@@ -10,7 +12,15 @@ const withCart = (WrappedComponent) => {
 
     return (
       <View style={styles.container}>
-        <WrappedComponent {...props} cart={cart} cartCount={cartCount}  />
+        <WrappedComponent {...props} />
+        <CartAnimationWrapper cartCount={cartCount}>
+           
+           <Cartsummary
+           cartCount={cartCount}
+           cartImage = {cart[0]?.item?.image || require('@assets/products/10.png') }
+           />
+
+        </CartAnimationWrapper>
       </View>
     );
   };
