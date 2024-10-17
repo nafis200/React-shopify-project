@@ -5,14 +5,15 @@ import CustomHeader from "components/ui/CustomHeader";
 import Sidebar from "./Sidebar";
 import { useQuery } from "@tanstack/react-query";
 import useAxiospublic from "provider/hooks/useAxiospublic";
+import ProductList from "./ProductList";
 
 
 const ProductCategory = () => {
   const [categories, SetCategories] = useState([]);
   const [selectedCategory, SetSelectedCategory] = useState(null);
-  const [products,SetProducts] = useState([])
-  const [categoriesLoading,SetCategoriesLoading] = useState(true)
-  const [productsLoading,SetProductsLoading] = useState(false)
+  const [products, SetProducts] = useState([])
+  const [categoriesLoading, SetCategoriesLoading] = useState(true)
+  const [productsLoading, SetProductsLoading] = useState(false)
   const axiosPublic = useAxiospublic();
   const { data: Data = [], isLoading, error } = useQuery({
     queryKey: ['products'],
@@ -22,17 +23,18 @@ const ProductCategory = () => {
     },
   });
 
-    if (isLoading) {
-      return <Text style={{ color: 'black' }}>Loading......</Text>;
-    }
-  
-    
+  if (isLoading) {
+    return <Text style={{ color: 'black' }}>Loading......</Text>;
+  }
+
+
 
   useEffect(() => {
     if (Data.length > 0) {
       SetCategories(Data);
-      SetSelectedCategory(Data[0]); 
+      SetSelectedCategory(Data[0]);
       SetCategoriesLoading(false)
+      SetProducts(Data)
     }
   }, [Data]);
 
@@ -61,6 +63,11 @@ const ProductCategory = () => {
           selectedCategory={selectedCategory}
           onCategoryPress={(category) => SetSelectedCategory(category)}
         />
+        {productsLoading ? (
+          <ActivityIndicator size="large" color="#0000ff" /> 
+        ) : (
+          <ProductList data={products || []} /> 
+        )}
       </View>
     </View>
   );
