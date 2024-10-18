@@ -1,5 +1,5 @@
-import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
+import { ScrollView, StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 import CustomHeader from "components/ui/CustomHeader";
 import OrderList from "./OrderList";
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -12,6 +12,8 @@ const Productorder = () => {
   const { getItemCount, getTotalPrice, cart, clearCart } = useCartStore();
 
   const totalPrice = getTotalPrice();
+
+  const [loading,setLoading] = useState(false)
 
   return (
     <View style={styles.container}>
@@ -43,10 +45,19 @@ const Productorder = () => {
           <View style={styles.flexRow}>
             <Image source={require('@assets/icons/home.png')} style={{ width: 20, height: 20 }} />
           </View>
-          <View style={{ width: '75%' }}>
-            <CustomText style={styles.text}>Delivery to home</CustomText>
+          <View style={{ width: '75%', flexDirection:'row',justifyContent:'space-between' }}>
+            <CustomText style={[styles.text,{marginLeft:-40}]}>Delivery to home</CustomText>
+            <TouchableOpacity>
+              <CustomText style={[{marginLeft:30,backgroundColor:'green',padding:2,width:70,textAlign:'center'}]}>Charge</CustomText>
+            </TouchableOpacity>
+            <View style={styles.paymentGateway}>
+          </View>
           </View>
         </View>
+        <View style={{width:'30%'}}>
+                <CustomText style={styles.text} fontSize={RFValue(10)}>Pay Using</CustomText>
+                <CustomText variant="h9" style={[styles.text, {marginTop:2}]} fontSize={RFValue(10)}>Cash on delivery</CustomText>
+            </View>
       </View>
     </View>
   );
@@ -108,4 +119,10 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     borderBottomWidth: 0.7,
   },
+  paymentGateway:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'center',
+    paddingLeft:14
+  } 
 });
