@@ -7,6 +7,12 @@ const BillDetails = ({totalItemPrice}) => {
   return (
     <View style={styles.container}>
       <CustomText style={[styles.colors,styles.text]} >Bill details</CustomText>
+       
+      <View style={styles.billContainer}>
+        
+        
+     </View> 
+
     </View>
   );
 };
@@ -25,5 +31,20 @@ const styles = StyleSheet.create({
     text:{
         marginHorizontal:'10',
         marginTop:15
+    },
+    billContainer:{
+        padding: 10,
+        paddingBottom:0,
+        borderBottomWidth: 0.7
+    },
+    flexRowBetween:{
+        justifyContent:'space-between',
+        alignItems:'center',
+        flexDirection:'row'
+    },
+    flexRow:{
+        flexDirection:'row',
+        alignItems:'center',
+        gap:5
     }
 });
