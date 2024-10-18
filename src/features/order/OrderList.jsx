@@ -3,10 +3,11 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { useCartStore } from "state/cartStore";
 import CustomText from "components/ui/CustomText";
+import OrderItem from "./OrderItem";
 
 const OrderList = () => {
     const cartItem = useCartStore(state => state.cart)
-    const totalItem = cartItem.reduce((acc,cart)=> acc + cart?.count,0)
+    const totalItem = cartItem?.reduce((acc, cart) => acc + cart?.count, 0)
     return (
         <View style={styles.container}>
             <View style={styles.flexRow}>
@@ -21,6 +22,15 @@ const OrderList = () => {
                 </View>
 
             </View>
+
+           {
+              cartItem?.map((item)=>{
+                 return(
+                    <OrderItem key={item._id} item={item}  />
+                 )
+              })
+           }
+
         </View>
     );
 };
@@ -37,18 +47,18 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
     imgContainer: {
-         padding:10,
-         borderRadius:15
+        padding: 10,
+        borderRadius: 15
     },
     flexRow: {
-    alignItems:'center',
-    flexDirection:'row',
-    gap:12,
-    paddingHorizontal:10,
-    paddingVertical:12
+        alignItems: 'center',
+        flexDirection: 'row',
+        gap: 12,
+        paddingHorizontal: 10,
+        paddingVertical: 12
     },
-    img:{
-       width:30,
-       height:30
-    } 
+    img: {
+        width: 30,
+        height: 30
+    }
 });
