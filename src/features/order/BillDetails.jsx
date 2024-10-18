@@ -42,10 +42,10 @@ const BillDetails = ({ totalItemPrice }) => {
             <CustomText style={[styles.colors, styles.text]} >Bill details</CustomText>
 
             <View style={styles.billContainer}>
-                <ReportItem iconName='article' title="Items total" price={totalItemPrice} />
-                <ReportItem iconName='pedal-bike' title="delivery Charge" price={29} />
-                <ReportItem iconName='shopping bag' title="Items total" price={2} />
-                <ReportItem iconName='cloudy-snowing' title="Items total" price={3} />
+                <ReportItem iconName='file-text' title="Items Total" price={totalItemPrice} />
+                <ReportItem iconName='bicycle' title="Delivery Charge" price={29} />
+                <ReportItem iconName='shopping-bag' title="Items Total" price={2} />
+                <ReportItem iconName='snowflake-o' title="Items Total" price={3} />
             </View>
 
             <View style={[styles.flexRowBetween, { marginBottom: 15 }]}>
