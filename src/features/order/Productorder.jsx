@@ -6,7 +6,16 @@ import OrderList from "./OrderList";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { RFValue } from "react-native-responsive-fontsize";
 import CustomText from "components/ui/CustomText";
+import { useCartStore } from "state/cartStore";
+import BillDetails from "./BillDetails";
 const Productorder = () => {
+
+    const {getItemCount,getTotalPrice,cart,clearCart} = useCartStore()
+    
+    const totalPrice = getTotalPrice()
+    
+    
+
   return (
     <View>
       <CustomHeader title="checkout" />
@@ -17,10 +26,12 @@ const Productorder = () => {
        
          <View style={styles.flexRow}>
            <Image source={require('@assets/icons/coupon.png')} style={{width:25, height:25}} />
-           <CustomText style={styles.text}>Use Coupons</CustomText>
+           <CustomText variant="h6" style={styles.text}>Use Coupons</CustomText>
          </View>
           <Icon name="chevron-right" size={RFValue(16)} style={styles.text} />
         </View>
+
+        <BillDetails totalItemPrice={totalPrice} />   
 
       </ScrollView>
     </View>
