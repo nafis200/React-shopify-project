@@ -15,7 +15,7 @@ const Cartsummary = ({ cartCount, cartImage }) => {
         <Image source={cartImage === null ? require('@assets/icons/bucket.png') : { uri: cartImage }}
           style={styles.image}
         />
-        <CustomText style={{ color: 'black' }}>Item {cartCount > 1 ? `${cartCount}` : ''} </CustomText>
+        <CustomText style={{ color: 'black' }}>Item {cartCount > 0 ? `${cartCount}` : ''} </CustomText>
 
         <Icon name="arrow-up" color="black" size={RFValue(25)} />
       </View>

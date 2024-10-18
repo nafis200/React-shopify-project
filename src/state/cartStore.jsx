@@ -20,11 +20,11 @@ export const useCartStore = create(
           set({ cart: updatedCart });
         } else {
           set({
-            cart: [...currentCart, { _id: item._id, item: item, count: 1 }]
+            cart: [...currentCart, { _id: item._id, item: item, count: 1 }],
           });
         }
       },
-
+      
       clearCart: () => set({ cart: [] }),
 
       removeItem: (id) => {

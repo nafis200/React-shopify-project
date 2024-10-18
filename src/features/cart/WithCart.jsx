@@ -9,6 +9,7 @@ const withCart = (WrappedComponent) => {
   const WithCartComponent = (props) => {
     const cart = useCartStore((state) => state.cart);
     const cartCount = cart.reduce((acc, item) => acc + item.count, 0);
+    
 
     return (
       <View style={styles.container}>
