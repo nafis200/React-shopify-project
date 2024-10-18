@@ -1,8 +1,11 @@
 
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { screenHeight, screenWidth } from "utils/Scaling";
 import CustomText from "components/ui/CustomText";
+import Icon from 'react-native-vector-icons/Ionicons'
+import { RFValue } from "react-native-responsive-fontsize";
+import { navigate } from "utils/NavigationUtils";
 
 const Cartsummary = ({ cartCount, cartImage }) => {
   return (
@@ -13,7 +16,18 @@ const Cartsummary = ({ cartCount, cartImage }) => {
           style={styles.image}
         />
         <CustomText style={{ color: 'black' }}>Item {cartCount > 1 ? '$' : ''} </CustomText>
+
+        <Icon name="arrow-up" color="black" size={RFValue(25)} />
       </View>
+
+      <TouchableOpacity
+      style={styles.btn}
+      activeOpacity={0.7}
+      onPress={()=> navigate('ProductOrder') }
+      >
+       <CustomText style={styles.btnText}>Next</CustomText>
+       <Icon name="arrow-forward" color="black" size={RFValue(25)} />
+      </TouchableOpacity>
 
     </View>
   );
@@ -51,7 +65,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: screenWidth * 0.1
   },
   btnText: {
-    marginLeft: screenWidth * 0.02,
-    color: '#fff'
+    marginLeft: screenWidth * 0.2,
+    width:'30%',
+    color: '#fff',
+    backgroundColor:'green',
+    padding:6
   }
 });
