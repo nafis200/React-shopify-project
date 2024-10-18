@@ -15,7 +15,7 @@ const Cartsummary = ({ cartCount, cartImage }) => {
         <Image source={cartImage === null ? require('@assets/icons/bucket.png') : { uri: cartImage }}
           style={styles.image}
         />
-        <CustomText style={{ color: 'black' }}>Item {cartCount > 1 ? '$' : ''} </CustomText>
+        <CustomText style={{ color: 'black' }}>Item {cartCount > 1 ? `${cartCount}` : ''} </CustomText>
 
         <Icon name="arrow-up" color="black" size={RFValue(25)} />
       </View>
@@ -23,9 +23,10 @@ const Cartsummary = ({ cartCount, cartImage }) => {
       <TouchableOpacity
       style={styles.btn}
       activeOpacity={0.7}
-      onPress={()=> navigate('ProductOrder') }
+      onPress={()=> navigate('ProductOrder') 
+      }
       >
-       <CustomText style={styles.btnText}>Next</CustomText>
+       <CustomText style={styles.btnText} >Next</CustomText>
        <Icon name="arrow-forward" color="black" size={RFValue(25)} />
       </TouchableOpacity>
 

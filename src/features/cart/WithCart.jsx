@@ -14,7 +14,7 @@ const withCart = (WrappedComponent) => {
       <View style={styles.container}>
         <WrappedComponent {...props} />
         <CartAnimationWrapper cartCount={cartCount}>
-           
+        
            <Cartsummary
            cartCount={cartCount}
            cartImage = {cart[0]?.item?.image || null }
