@@ -6,6 +6,7 @@ import CustomText from "components/ui/CustomText";
 
 const OrderList = () => {
     const cartItem = useCartStore(state => state.cart)
+    const totalItem = cartItem.reduce((acc,cart)=> acc + cart?.count,0)
     return (
         <View style={styles.container}>
             <View style={styles.flexRow}>
@@ -16,7 +17,7 @@ const OrderList = () => {
 
                 <View>
                     <CustomText style={styles.text} variant="h8">Delivery in 8 min</CustomText>
-                    <CustomText style={styles.text} variant="h8">Shipment of {cartItem?.length || 0} item </CustomText>
+                    <CustomText style={styles.text} variant="h8">Shipment of {totalItem || 0} item </CustomText>
                 </View>
 
             </View>
