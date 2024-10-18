@@ -18,6 +18,7 @@ import {
 } from '@r0b0t3d/react-native-collapsible';
 import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
 import Icon from 'react-native-vector-icons/Ionicons';
+import withCart from "features/cart/WithCart";
 
 const Notice_Height = -(NoticeHeight + 12);
 
@@ -142,4 +143,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withCollapsibleContext(ProductDashboard);
+export default withCart(withCollapsibleContext(ProductDashboard));

@@ -13,6 +13,7 @@ import ProductDashboard from '../features/dashboard/ProductDashboard';
 import Extranavigation from '../splashscreen/Extranavigation';
 import DeliveryDashboard from '../features/dashboard/DeliveryDashboard';
 import ProductCategory from 'features/category/ProductCategory';
+import Productorder from 'features/order/Productorder';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,7 @@ const Navigation = () => {
                 <Stack.Screen name="ProductDashboard" component={ProductDashboard} />
                 <Stack.Screen name="ProductCategory" component={ProductCategory} />
                 <Stack.Screen name="DeliveryDashboard" component={DeliveryDashboard} />
+                <Stack.Screen name="ProductOrder" component={Productorder} />
                 <Stack.Screen
                     options={{
                         animation: 'fade'
