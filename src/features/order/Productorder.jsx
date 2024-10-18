@@ -7,6 +7,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 import CustomText from "components/ui/CustomText";
 import { useCartStore } from "state/cartStore";
 import BillDetails from "./BillDetails";
+import Arrowbutton from "components/ui/Arrowbutton";
 
 const Productorder = () => {
   const { getItemCount, getTotalPrice, cart, clearCart } = useCartStore();
@@ -50,8 +51,16 @@ const Productorder = () => {
             <TouchableOpacity>
               <CustomText style={[{marginLeft:30,backgroundColor:'green',padding:2,width:70,textAlign:'center'}]}>Charge</CustomText>
             </TouchableOpacity>
-            <View style={styles.paymentGateway}>
-          </View>
+            <TouchableOpacity style={styles.paymentGateway}>
+               <Arrowbutton 
+               loading={loading}
+               price={totalPrice}
+               title="place order"
+               onPress = {()=>{
+
+               }}
+               />
+           </TouchableOpacity>
           </View>
         </View>
         <View style={{width:'30%'}}>
