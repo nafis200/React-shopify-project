@@ -13,6 +13,12 @@ const BillDetails = ({totalItemPrice}) => {
         
      </View> 
 
+     <View style={[styles.flexRowBetween,{marginBottom:15}]}>
+       
+      <CustomText variant="h7" style={[styles.text,styles.colors]}>Grand Total</CustomText> 
+
+     </View>
+
     </View>
   );
 };
