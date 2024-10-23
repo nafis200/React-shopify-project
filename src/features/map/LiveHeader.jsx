@@ -4,39 +4,41 @@ import React from "react";
 
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const LiveHeader = ({title,secondTitle}) => {
-  return (
-    <SafeAreaView>
-      
-      <View style={styles.headerContainer}>
-       
-        <Pressable>
-            
- 
-        </Pressable>
+const LiveHeader = ({ title,type, secondTitle }) => {
 
-      </View>
+    const isCustomer = type === 'Customer'
 
-    </SafeAreaView>
-  );
+    return (
+        <SafeAreaView>
+
+            <View style={styles.headerContainer}>
+
+                <Pressable>
+                  <Icon name='chevron-back' color={isCustomer ? '#fff' : '#000'} />
+                </Pressable>
+
+            </View>
+
+        </SafeAreaView>
+    );
 };
 
 export default LiveHeader;
 
 const styles = StyleSheet.create({
-    headerContainer:{
-         justifyContent:'center',
-         paddingVertical:10,
-         alignItems:'center'
+    headerContainer: {
+        justifyContent: 'center',
+        paddingVertical: 10,
+        alignItems: 'center'
     },
-    backButton:{
-        position:'absolute',
-        left:20
+    backButton: {
+        position: 'absolute',
+        left: 20
     },
-    titleTextBlack:{
-         color:'black'
+    titleTextBlack: {
+        color: 'black'
     },
-    titleTextWhite:{
-        color:'white'
+    titleTextWhite: {
+        color: 'white'
     }
 });
