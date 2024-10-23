@@ -1,11 +1,28 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { screenWidth } from "utils/Scaling";
+import LottieView from "lottie-react-native";
+import CustomText from "components/ui/CustomText";
 
 const OrderSuccess = () => {
   return (
-    <View>
-      <Text>OrderSuccess</Text>
+    <View style={[styles.container]}>
+       <LottieView
+       source={require('@assets/jsondata/confirm.json')}
+       autoPlay
+       duration={2000}
+       loop={false}
+       speed={1}
+       style={styles.lottieView}
+       enableMergePathsAndroidForKitKatAndAbove 
+       hardwareAccelerationAndroid
+       >
+       </LottieView>
+      
+       <CustomText variant="h5" style={styles.addressText}>
+            Order Placed
+       </CustomText>
+
     </View>
   );
 };
@@ -34,7 +51,8 @@ const styles = StyleSheet.create({
         marginTop:15
     },
     addressText:{
-        opacity:0.8
+        opacity:0.8,
+        color:'black'
     },
     text:{
         color:'black'
