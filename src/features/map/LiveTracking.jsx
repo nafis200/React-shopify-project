@@ -66,9 +66,20 @@ const styles = StyleSheet.create({
     padding: 15
   },
   iconContainer:{
-
+       borderRadius:100,
+       padding:10,
+       justifyContent:'center',
+       alignItems:'center'
   },
-  flexRow:[
-    
-  ]
+  flexRow:{
+    flexDirection:'row',
+    alignItems:'center',
+    gap:10,
+    width:'100%',
+    borderRadius:15,
+    marginTop:15,
+    paddingVertical:10,
+    backgroundColor:'#fff',
+    borderBottomWidth:0.7
+  }
 });
