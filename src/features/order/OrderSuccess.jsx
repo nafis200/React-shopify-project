@@ -6,16 +6,16 @@ import CustomText from "components/ui/CustomText";
 import { AuthContext } from "provider/Authprovider";
 import { replace } from "utils/NavigationUtils";
 
-const OrderSuccess = () => {
-    const {user} = useContext(AuthContext)
+const OrderSuccess = ({ route }) => {
+    const { user } = useContext(AuthContext)
 
-    useEffect(()=>{
-       
-    const timeoutId = setTimeout(()=>{
-      replace('LiveTracking')
-    },2300)
-    return ()=> clearTimeout(timeoutId)
-    },[])
+    useEffect(() => {
+
+        const timeoutId = setTimeout(() => {
+            replace('LiveTracking')
+        }, 2300)
+        return () => clearTimeout(timeoutId)
+    }, [])
 
     return (
         <View style={[styles.container]}>
@@ -36,11 +36,11 @@ const OrderSuccess = () => {
             </CustomText>
 
             <View style={styles.deliveryContainer}>
-               <CustomText variant="h5" style={styles.addressText} >Deliverying home</CustomText>
+                <CustomText variant="h5" style={styles.addressText} >Deliverying home</CustomText>
             </View>
 
             <CustomText variant="h5" style={styles.addressText}>
-                  {user?.email}
+                {user?.email}
             </CustomText>
 
         </View>
