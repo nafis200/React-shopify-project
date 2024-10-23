@@ -51,7 +51,7 @@ const Productorder = () => {
             <TouchableOpacity>
               <CustomText style={[{marginLeft:30,backgroundColor:'green',padding:2,width:70,textAlign:'center'}]}>Charge</CustomText>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.paymentGateway}>
+            <TouchableOpacity style={[styles.paymentGateway,{width:'70%'}]}>
                <Arrowbutton 
                loading={loading}
                price={totalPrice}
