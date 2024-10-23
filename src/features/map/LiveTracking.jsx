@@ -1,7 +1,9 @@
 
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View,ScrollView } from "react-native";
 import React, { useState } from "react";
 import LiveHeader from "./LiveHeader";
+import Livemap from "./Livemap";
+
 
 const LiveTracking = () => {
 
@@ -28,6 +30,13 @@ const LiveTracking = () => {
     <View style={styles.container}>
       <LiveHeader type='Customer' title={msg} secondTitle={time}
        />
+      
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false} >
+
+      <Livemap />
+
+      </ScrollView>
+
     </View>
   );
 };
@@ -38,5 +47,10 @@ const styles = StyleSheet.create({
   container:{
      flex:1,
      backgroundColor:'green'
+  },
+  scrollContent:{
+    paddingBottom: 150,
+    backgroundColor:'white',
+    padding:15
   }
 });
