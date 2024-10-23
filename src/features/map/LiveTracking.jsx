@@ -6,6 +6,7 @@ import Livemap from "./Livemap";
 
 import Icon from 'react-native-vector-icons/Ionicons'
 import CustomText from "components/ui/CustomText";
+import DeliveryDetails from "./DeliveryDetails";
 
 
 const LiveTracking = () => {
@@ -48,18 +49,18 @@ const LiveTracking = () => {
           </View>
 
           <View style={{ width: '82%' }}>
-            {
-              deliveryPartner && <CustomText numberOfLines={1} variant="h7" style={{ color: 'black' }}>
-                {"Nafis ahamed"}
-              </CustomText>
-            }
-            {
-              deliveryPartner && <CustomText numberOfLines={1} variant="h7" style={{ color: 'black' }}>
-                {"Delivery instruction you can instruct"}
-              </CustomText>
-            }
+            <CustomText numberOfLines={1} variant="h7" style={{ color: 'black' }}>
+              {"Nafis ahamed"}
+            </CustomText>
+
+            <CustomText numberOfLines={1} variant="h7" style={{ color: 'black' }}>
+              {"Delivery instruction you can instruct"}
+            </CustomText>
+
           </View>
         </View>
+
+        <DeliveryDetails/>
 
       </ScrollView>
 
