@@ -5,6 +5,7 @@ import LiveHeader from "./LiveHeader";
 import Livemap from "./Livemap";
 
 import Icon from 'react-native-vector-icons/Ionicons'
+import CustomText from "components/ui/CustomText";
 
 
 const LiveTracking = () => {
@@ -13,6 +14,8 @@ const LiveTracking = () => {
   let time = "arriving in 10 minutes"
 
   const [currentOrder, setCurrentOrder] = useState('confiremd')
+
+  const [deliveryPartner, setDeliveryPartner] = useState(true)
 
   const [person, setPerson] = useState('Customer')
 
@@ -41,10 +44,21 @@ const LiveTracking = () => {
 
           <View style={styles.iconContainer}>
 
-          <Icon name ='call' color='black' size={30} />    
-
+            <Icon name='call' color='black' size={30} />
           </View>
 
+          <View style={{ width: '82%' }}>
+            {
+              deliveryPartner && <CustomText numberOfLines={1} variant="h7" style={{ color: 'black' }}>
+                {"Nafis ahamed"}
+              </CustomText>
+            }
+            {
+              deliveryPartner && <CustomText numberOfLines={1} variant="h7" style={{ color: 'black' }}>
+                {"Delivery instruction you can instruct"}
+              </CustomText>
+            }
+          </View>
         </View>
 
       </ScrollView>
@@ -65,21 +79,21 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 15
   },
-  iconContainer:{
-       borderRadius:100,
-       padding:10,
-       justifyContent:'center',
-       alignItems:'center'
+  iconContainer: {
+    borderRadius: 100,
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  flexRow:{
-    flexDirection:'row',
-    alignItems:'center',
-    gap:10,
-    width:'100%',
-    borderRadius:15,
-    marginTop:15,
-    paddingVertical:10,
-    backgroundColor:'#fff',
-    borderBottomWidth:0.7
+  flexRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    width: '100%',
+    borderRadius: 15,
+    marginTop: 15,
+    paddingVertical: 10,
+    backgroundColor: '#fff',
+    borderBottomWidth: 0.7
   }
 });
