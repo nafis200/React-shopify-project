@@ -7,6 +7,8 @@ import Livemap from "./Livemap";
 import Icon from 'react-native-vector-icons/Ionicons'
 import CustomText from "components/ui/CustomText";
 import DeliveryDetails from "./DeliveryDetails";
+import OrderSuccess from "features/order/OrderSuccess";
+import OrderSummary from "features/order/OrderSummary";
 
 
 const LiveTracking = ({route}) => {
@@ -62,6 +64,7 @@ const LiveTracking = ({route}) => {
         </View>
 
         <DeliveryDetails/>
+        <OrderSummary data={route.params} />
 
       </ScrollView>
 
