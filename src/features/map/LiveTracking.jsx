@@ -9,8 +9,9 @@ import CustomText from "components/ui/CustomText";
 import DeliveryDetails from "./DeliveryDetails";
 
 
-const LiveTracking = () => {
-
+const LiveTracking = ({route}) => {
+  // console.log(route.params,"i am liveTracking");
+  
   let msg = "packing your order"
   let time = "arriving in 10 minutes"
 

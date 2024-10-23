@@ -12,7 +12,7 @@ const OrderSuccess = ({ route }) => {
     useEffect(() => {
 
         const timeoutId = setTimeout(() => {
-            replace('LiveTracking')
+            replace('LiveTracking',route.params)
         }, 2300)
         return () => clearTimeout(timeoutId)
     }, [])
