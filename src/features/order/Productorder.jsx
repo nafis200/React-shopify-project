@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { ScrollView, StyleSheet, Text, View, Image, TouchableOpacity,Alert } from "react-native";
 import React, { useState } from "react";
 import CustomHeader from "components/ui/CustomHeader";
 import OrderList from "./OrderList";
@@ -8,6 +8,7 @@ import CustomText from "components/ui/CustomText";
 import { useCartStore } from "state/cartStore";
 import BillDetails from "./BillDetails";
 import Arrowbutton from "components/ui/Arrowbutton";
+import { navigate } from "utils/NavigationUtils";
 
 const Productorder = () => {
   const { getItemCount, getTotalPrice, cart, clearCart } = useCartStore();
@@ -15,6 +16,41 @@ const Productorder = () => {
   const totalPrice = getTotalPrice();
 
   const [loading,setLoading] = useState(false)
+
+
+
+  const handlePlaceOrder = async()=>{
+       console.log("hellow");
+       
+       if(getItemCount === null){
+          Alert.alert('Let your first order to be delivered')
+          return
+       }
+
+       const formattedData = cart.map(item=>({
+          id: item._id,
+          item: item._id,
+          count: item.count,
+          name: item?.item?.name,
+          image: item?.item?.image,
+          price:item?.item?.price,
+          discountPrice:item?.item?.discountPrice
+       }))
+
+       if(formattedData.length == 0){
+        Alert.alert('Add any Item place order')
+        return
+       }
+       setLoading(true)
+
+       if(formattedData != null){
+         clearCart()
+         navigate('OrderSuccess',{... formattedData})
+       }
+
+       setLoading(false)
+       
+  }
 
   return (
     <View style={styles.container}>
@@ -56,8 +92,8 @@ const Productorder = () => {
                loading={loading}
                price={totalPrice}
                title="place order"
-               onPress = {()=>{
-
+               onPress = {async()=>{
+                    await handlePlaceOrder()
                }}
                />
            </TouchableOpacity>
