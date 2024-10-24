@@ -16,6 +16,7 @@ import ProductCategory from 'features/category/ProductCategory';
 import Productorder from 'features/order/Productorder';
 import OrderSuccess from 'features/order/OrderSuccess';
 import LiveTracking from 'features/map/LiveTracking';
+import Profile from 'features/profile/Profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,7 @@ const Navigation = () => {
                 }}
             >
                 <Stack.Screen name="SplashScreen" component={SplashScreen} />
+                <Stack.Screen name="Profile" component={Profile} />
                 <Stack.Screen name="Extra" component={Extranavigation} />
                 <Stack.Screen name="ProductDashboard" component={ProductDashboard} />
                 <Stack.Screen name="ProductCategory" component={ProductCategory} />

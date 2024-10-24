@@ -5,6 +5,7 @@ import CustomText from "../../components/ui/CustomText";
 import { RFValue } from "react-native-responsive-fontsize";
 import { AuthContext } from "../../provider/Authprovider";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { navigate } from "utils/NavigationUtils";
 
 const Header = ({ showNotice }) => {
     const { user } = useContext(AuthContext)
@@ -41,7 +42,7 @@ const Header = ({ showNotice }) => {
                 </View>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=> navigate('Profile')}>
                 <Icon name='account-circle-outline' size={RFValue(36)} color="white" />
             </TouchableOpacity>
 
