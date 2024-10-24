@@ -9,6 +9,7 @@ import CustomText from "components/ui/CustomText";
 import DeliveryDetails from "./DeliveryDetails";
 import OrderSuccess from "features/order/OrderSuccess";
 import OrderSummary from "features/order/OrderSummary";
+import withLiveStatus from "./WithLiveStatus";
 
 
 const LiveTracking = ({route}) => {
@@ -72,7 +73,7 @@ const LiveTracking = ({route}) => {
   );
 };
 
-export default LiveTracking;
+export default withLiveStatus(LiveTracking);
 
 const styles = StyleSheet.create({
   container: {

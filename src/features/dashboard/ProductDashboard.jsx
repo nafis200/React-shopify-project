@@ -19,6 +19,7 @@ import {
 import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
 import Icon from 'react-native-vector-icons/Ionicons';
 import withCart from "features/cart/WithCart";
+import withLiveStatus from "features/map/WithLiveStatus";
 
 const Notice_Height = -(NoticeHeight + 12);
 
@@ -143,4 +144,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withCart(withCollapsibleContext(ProductDashboard));
+export default withLiveStatus(withCart(withCollapsibleContext(ProductDashboard)));
